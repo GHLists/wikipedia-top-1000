@@ -17,9 +17,22 @@ API_URL = (
 )
 DEFAULT_USER_AGENT = "wikipedia-top-1000/1.0 (https://github.com/wikipedia-top-1000)"
 
+DEFAULT_PROJECTS = (
+    "en", "ja", "zh", "fr", "de", "ru", "es", "it", "pt", "pl",
+    "ar", "fa", "tr", "he", "sv", "nl", "ko", "id", "uk", "vi",
+)
+
 
 class NotFound(Exception):
     pass
+
+
+def to_project(code):
+    return code if "." in code else f"{code}.wikipedia"
+
+
+def to_slug(project):
+    return project.removesuffix(".wikipedia")
 
 
 def fetch_day(project, day, user_agent, retries=3, backoff=5.0):
@@ -82,7 +95,11 @@ def parse_args(argv=None):
         "--date",
         help="UTC day to fetch as YYYY-MM-DD (default: yesterday)",
     )
-    parser.add_argument("--project", default="en.wikipedia")
+    parser.add_argument(
+        "--projects",
+        default=",".join(DEFAULT_PROJECTS),
+        help="comma-separated language codes (default: the 20 most-read wikis)",
+    )
     parser.add_argument("--limit", type=int, default=1000)
     parser.add_argument("--output-dir", default="data")
     parser.add_argument("--user-agent", default=DEFAULT_USER_AGENT)
@@ -103,27 +120,43 @@ def main(argv=None):
         else dt.datetime.now(dt.timezone.utc).date() - dt.timedelta(days=1)
     )
 
-    try:
-        day, payload = resolve_day(
-            args.project,
-            requested,
-            args.user_agent,
-            allow_fallback=not args.no_fallback,
-            retries=args.retries,
+    codes = [code.strip() for code in args.projects.split(",") if code.strip()]
+    failed = []
+    for code in codes:
+        project = to_project(code)
+        try:
+            day, payload = resolve_day(
+                project,
+                requested,
+                args.user_agent,
+                allow_fallback=not args.no_fallback,
+                retries=args.retries,
+            )
+        except (NotFound, RuntimeError) as error:
+            print(f"{project}: {error}", file=sys.stderr)
+            failed.append(code)
+            continue
+
+        items = payload.get("items") or []
+        if not items:
+            print(f"{project} {day}: unexpected API response", file=sys.stderr)
+            failed.append(code)
+            continue
+
+        articles = items[0].get("articles") or []
+        output = (
+            Path(args.output_dir)
+            / to_slug(project)
+            / f"top-{args.limit}-{day.isoformat()}.csv"
         )
-    except NotFound as error:
-        print(f"no pageview data available: {error}", file=sys.stderr)
-        return 1
+        write_csv(output, day, project, articles, args.limit)
+        print(f"wrote {min(len(articles), args.limit)} articles for {day} to {output}")
+        time.sleep(1)
 
-    items = payload.get("items") or []
-    if not items:
-        print(f"unexpected API response for {day}: missing items", file=sys.stderr)
-        return 1
-
-    articles = items[0].get("articles") or []
-    output = Path(args.output_dir) / f"top-{args.limit}-{day.isoformat()}.csv"
-    write_csv(output, day, args.project, articles, args.limit)
-    print(f"wrote {min(len(articles), args.limit)} articles for {day} to {output}")
+    if failed:
+        print(f"failed wikis: {', '.join(failed)}", file=sys.stderr)
+        if len(failed) == len(codes):
+            return 1
     return 0
 
 

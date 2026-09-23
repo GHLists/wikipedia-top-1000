@@ -31,16 +31,24 @@ jobs:
             --user-agent "wikipedia-top-1000/1.0 (+https://github.com/${{ github.repository }})" \
             "${args[@]}"
 
+      - name: Render README
+        run: python3 scripts/render_readme.py
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 'data/top-1000-*.csv'
+          git add README.md data
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          file=$(git diff --cached --name-only | head -n 1)
-          day=${file#data/top-1000-}
-          git commit -m "Add Wikipedia top 1000 pageviews for ${day%.csv}"
+          data_file=$(git diff --cached --name-only | grep '^data/.*/top-1000-.*\.csv$' | head -n 1)
+          if [ -n "$data_file" ]; then
+            day=${data_file##*/top-1000-}
+            message="Add Wikipedia top 1000 pageviews for ${day%.csv}"
+          else
+            message="Refresh README"
+          fi
+          git commit -m "$message"
           git push
