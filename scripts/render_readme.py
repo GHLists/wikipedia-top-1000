@@ -115,8 +115,13 @@ def main(argv=None):
 
     by_code = collect(args.data_dir)
     if not by_code:
-        print(f"no top-1000 CSV found in {args.data_dir}", file=sys.stderr)
-        return 1
+        content = INTRO + "\n## Languages\n\n_No lists have been generated yet._\n"
+        Path(args.output).write_text(content, encoding="utf-8")
+        print(
+            f"no top-1000 CSV found in {args.data_dir}; wrote an empty README",
+            file=sys.stderr,
+        )
+        return 0
 
     codes = ordered_codes(by_code)
     content = INTRO + "\n## Languages\n\n" + render_map(by_code, codes) + "\n\n"
