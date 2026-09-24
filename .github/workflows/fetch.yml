@@ -1,0 +1,64 @@
+name: Fetch Wikipedia top 1000 (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      runner:
+        description: "Runner label to execute the job on"
+        required: false
+        type: string
+      date:
+        description: "UTC date to fetch (YYYY-MM-DD)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-commit:
+    runs-on: ${{ inputs.runner || 'self-hosted' }}
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout: |
+            scripts
+
+      - name: Fetch top 1000 articles
+        env:
+          INPUT_DATE: ${{ inputs.date }}
+        run: |
+          source scripts/retry.sh
+          args=()
+          if [ -n "$INPUT_DATE" ]; then
+            args+=(--date "$INPUT_DATE")
+          fi
+          retry python3 scripts/fetch_top_articles.py \
+            --user-agent "wikipedia-top-1000/1.0 (+https://github.com/${{ github.repository }})" \
+            "${args[@]}"
+
+      - name: Render README
+        run: python3 scripts/render_readme.py
+
+      - name: Commit and push
+        run: |
+          source scripts/retry.sh
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --sparse README.md data
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          data_file=$(git diff --cached --name-only | grep '^data/.*/top-1000-.*\.csv$' | head -n 1)
+          if [ -n "$data_file" ]; then
+            day=${data_file##*/top-1000-}
+            message="Add Wikipedia top 1000 pageviews for ${day%.csv}"
+          else
+            message="Refresh README"
+          fi
+          git commit -m "$message"
+          retry git push
