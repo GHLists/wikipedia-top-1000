@@ -15,24 +15,24 @@ further down.
 | :------- | :--- | :----- |
 | English | `en` | [2026-09-28](data/en/top-1000-2026-09-28.csv) |
 | Japanese | `ja` | [2026-09-28](data/ja/top-1000-2026-09-28.csv) |
-| Chinese | `zh` | [2026-09-28](data/zh/top-1000-2026-09-28.csv) |
-| French | `fr` | [2026-09-28](data/fr/top-1000-2026-09-28.csv) |
-| German | `de` | [2026-09-28](data/de/top-1000-2026-09-28.csv) |
-| Russian | `ru` | [2026-09-28](data/ru/top-1000-2026-09-28.csv) |
-| Spanish | `es` | [2026-09-27](data/es/top-1000-2026-09-27.csv) |
+| Chinese | `zh` | [2026-09-29](data/zh/top-1000-2026-09-29.csv) |
+| French | `fr` | [2026-09-29](data/fr/top-1000-2026-09-29.csv) |
+| German | `de` | [2026-09-29](data/de/top-1000-2026-09-29.csv) |
+| Russian | `ru` | [2026-09-29](data/ru/top-1000-2026-09-29.csv) |
+| Spanish | `es` | [2026-09-28](data/es/top-1000-2026-09-28.csv) |
 | Italian | `it` | [2026-09-28](data/it/top-1000-2026-09-28.csv) |
 | Portuguese | `pt` | [2026-09-28](data/pt/top-1000-2026-09-28.csv) |
-| Polish | `pl` | [2026-09-28](data/pl/top-1000-2026-09-28.csv) |
-| Arabic | `ar` | [2026-09-28](data/ar/top-1000-2026-09-28.csv) |
-| Persian | `fa` | [2026-09-28](data/fa/top-1000-2026-09-28.csv) |
-| Turkish | `tr` | [2026-09-28](data/tr/top-1000-2026-09-28.csv) |
-| Hebrew | `he` | [2026-09-28](data/he/top-1000-2026-09-28.csv) |
-| Swedish | `sv` | [2026-09-28](data/sv/top-1000-2026-09-28.csv) |
+| Polish | `pl` | [2026-09-29](data/pl/top-1000-2026-09-29.csv) |
+| Arabic | `ar` | [2026-09-29](data/ar/top-1000-2026-09-29.csv) |
+| Persian | `fa` | [2026-09-29](data/fa/top-1000-2026-09-29.csv) |
+| Turkish | `tr` | [2026-09-29](data/tr/top-1000-2026-09-29.csv) |
+| Hebrew | `he` | [2026-09-29](data/he/top-1000-2026-09-29.csv) |
+| Swedish | `sv` | [2026-09-29](data/sv/top-1000-2026-09-29.csv) |
 | Dutch | `nl` | [2026-09-28](data/nl/top-1000-2026-09-28.csv) |
-| Korean | `ko` | [2026-09-28](data/ko/top-1000-2026-09-28.csv) |
-| Indonesian | `id` | [2026-09-28](data/id/top-1000-2026-09-28.csv) |
-| Ukrainian | `uk` | [2026-09-28](data/uk/top-1000-2026-09-28.csv) |
-| Vietnamese | `vi` | [2026-09-28](data/vi/top-1000-2026-09-28.csv) |
+| Korean | `ko` | [2026-09-29](data/ko/top-1000-2026-09-29.csv) |
+| Indonesian | `id` | [2026-09-29](data/id/top-1000-2026-09-29.csv) |
+| Ukrainian | `uk` | [2026-09-29](data/uk/top-1000-2026-09-29.csv) |
+| Vietnamese | `vi` | [2026-09-29](data/vi/top-1000-2026-09-29.csv) |
 
 ## English (en) — 2026-09-28
 
