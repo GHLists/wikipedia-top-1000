@@ -16,13 +16,13 @@ further down.
 | English | `en` | [2026-10-25](data/en/top-1000-2026-10-25.csv) |
 | Japanese | `ja` | [2026-10-25](data/ja/top-1000-2026-10-25.csv) |
 | Chinese | `zh` | [2026-10-25](data/zh/top-1000-2026-10-25.csv) |
-| French | `fr` | [2026-10-24](data/fr/top-1000-2026-10-24.csv) |
-| German | `de` | [2026-10-24](data/de/top-1000-2026-10-24.csv) |
+| French | `fr` | [2026-10-25](data/fr/top-1000-2026-10-25.csv) |
+| German | `de` | [2026-10-25](data/de/top-1000-2026-10-25.csv) |
 | Russian | `ru` | [2026-10-25](data/ru/top-1000-2026-10-25.csv) |
 | Spanish | `es` | [2026-10-25](data/es/top-1000-2026-10-25.csv) |
 | Italian | `it` | [2026-10-25](data/it/top-1000-2026-10-25.csv) |
 | Portuguese | `pt` | [2026-10-25](data/pt/top-1000-2026-10-25.csv) |
-| Polish | `pl` | [2026-10-24](data/pl/top-1000-2026-10-24.csv) |
+| Polish | `pl` | [2026-10-25](data/pl/top-1000-2026-10-25.csv) |
 | Arabic | `ar` | [2026-10-25](data/ar/top-1000-2026-10-25.csv) |
 | Persian | `fa` | [2026-10-25](data/fa/top-1000-2026-10-25.csv) |
 | Turkish | `tr` | [2026-10-25](data/tr/top-1000-2026-10-25.csv) |
