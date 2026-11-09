@@ -18,7 +18,7 @@ further down.
 | Chinese | `zh` | [2026-11-06](data/zh/top-1000-2026-11-06.csv) |
 | French | `fr` | [2026-11-06](data/fr/top-1000-2026-11-06.csv) |
 | German | `de` | [2026-11-06](data/de/top-1000-2026-11-06.csv) |
-| Russian | `ru` | [2026-11-06](data/ru/top-1000-2026-11-06.csv) |
+| Russian | `ru` | [2026-11-05](data/ru/top-1000-2026-11-05.csv) |
 | Spanish | `es` | [2026-11-06](data/es/top-1000-2026-11-06.csv) |
 | Italian | `it` | [2026-11-06](data/it/top-1000-2026-11-06.csv) |
 | Portuguese | `pt` | [2026-11-06](data/pt/top-1000-2026-11-06.csv) |
@@ -32,7 +32,7 @@ further down.
 | Korean | `ko` | [2026-11-06](data/ko/top-1000-2026-11-06.csv) |
 | Indonesian | `id` | [2026-11-06](data/id/top-1000-2026-11-06.csv) |
 | Ukrainian | `uk` | [2026-11-06](data/uk/top-1000-2026-11-06.csv) |
-| Vietnamese | `vi` | [2026-11-06](data/vi/top-1000-2026-11-06.csv) |
+| Vietnamese | `vi` | [2026-11-05](data/vi/top-1000-2026-11-05.csv) |
 
 ## English (en) — 2026-11-06
 
